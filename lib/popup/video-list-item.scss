@@ -1,0 +1,40 @@
+.video-item {
+  .button {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .play {
+    @extend .button;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #900;
+  }
+
+  .pause {
+    @extend .button;
+    width: 2px;
+    height: 10px;
+    border-left: 4px solid #900;
+    border-right: 4px solid #900;
+  }
+
+  .next {
+    @extend .button;
+    position: relative;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #900;
+    height: 0px;
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      height: 10px;
+      right: 0;
+      top: -5px;
+      border-right: 3px solid #900;
+    }
+  }
+}

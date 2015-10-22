@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+
+  "name": "Youtube Control",
+  "description": "This extention allows you to control all open youtube videos from one place.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "https://www.youtube.com/"
+  ],
+
+  "commands": {
+    "play-pause": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      },
+      "description": "Play/pause active videos",
+      "global": true
+    },
+    "skip": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+C"
+      },
+      "description": "Skip currently playing videos",
+      "global": true
+    },
+    "back": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z"
+      },
+      "description": "Replay previous currently playing videos",
+      "global": true
+    }
+  }
+}
