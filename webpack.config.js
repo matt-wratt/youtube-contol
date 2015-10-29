@@ -7,6 +7,7 @@ module.exports = {
     popup: './popup.html',
     manifest: './manifest.json',
     icon: './icon.png',
+    playing: './playing.png',
     application: './lib/application.js',
     background: './lib/background.js'
   },
