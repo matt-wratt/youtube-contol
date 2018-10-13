@@ -1,7 +1,7 @@
 {
   "name": "youtube-control",
   "version": "1.0.0",
-  "description": "This extention allows you to control all open youtube videos from one place.",
+  "description": "This extension allows you to control all open youtube videos from one place.",
   "main": "index.js",
   "scripts": {
     "start": "webpack --progress --colors --debug --watch",
