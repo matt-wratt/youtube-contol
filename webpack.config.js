@@ -1,6 +1,7 @@
 'use strict'
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -9,23 +10,52 @@ module.exports = {
     icon: './icon.png',
     playing: './playing.png',
     application: './lib/application.js',
-    background: './lib/background.js'
+    background: './lib/background/index.js'
   },
   output: {
     path: __dirname + '/youtube-control',
     filename: '[name].js'
   },
   module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader') },
-      { test: /\.(html|json|png)$/, loader: "file?name=[name].[ext]" }
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: {
+          loader: 'file-loader'
+        }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', // creates style nodes from JS strings
+          {
+            loader: MiniCssExtractPlugin.loader, // Provide css to HtmlWebPackPlugin
+          },
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
+      }
     ]
   },
-  resolve: {
-    extensions: ['', '.js', '.json']
-  },
   plugins: [
-    new ExtractTextPlugin("application.css")
+    new MiniCssExtractPlugin('application.css'),
+    new HtmlWebPackPlugin({
+      template: './popup.html',
+      filename: './popup.html',
+      chunks: ['application']
+    })
   ]
 }
